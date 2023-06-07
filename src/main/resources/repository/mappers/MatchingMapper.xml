@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springproject.dunk.mapper.MatchingMapper" >
+	
+	<select id="matchingList" resultType="Matching" resultMap="matchingResultMap">
+	
+		SELECT
+		*
+		FROM matching
+		ORDER BY date DESC
+		LIMIT #{startRow}, #{num}
+	
+	</select>
+	
+	<!-- 게시글 수 반환 -->
+	<select id="getMatchingCount" resultType="int">
+		SELECT
+		COUNT(no)
+		FROM matching
+	</select>
+	
+	<select id="getMatching" resultType="Matching" resultMap="matchingResultMap">
+	
+		SELECT
+		*
+		FROM matching
+		WHERE no = #{no}
+	
+	</select>
+	
+	<resultMap type="Matching" id="matchingResultMap">
+		<id property="no" column="no" />
+		<result property="placeNo" column="place_no" />
+		<result property="name" column="name" />
+		<result property="date" column="date" />
+		<result property="gender" column="gender" />
+		<result property="level" column="level" />
+		<result property="pay" column="pay" />
+		<result property="possibleImpossible" column="possible_impossible" />
+		<result property="information" column="information" />
+		<result property="readCount" column="read_Count" />
+		<result property="userId" column="user_id" />
+	
+	</resultMap>
+
+</mapper>	
+
+
+
